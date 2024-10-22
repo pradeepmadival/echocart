@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create your Amazon account</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; 
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .logo {
+            display: block;
+            margin-bottom: 20px;
+            width: 100px;
+            height: auto;
+        }
+        
+        .container {
+            max-width: 300px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        
+
+        h1 {
+            font-size: 20px; 
+            margin-bottom: 15px;
+            color: #333;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 3px; 
+            display: block;
+            font-size: 12px; 
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px 12px; 
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 12px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 8px; 
+            background-color: #ffa41c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: hsl(33, 100%, 50%);
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+        }
+
+        .footer-text a {
+            color: #0073e6;
+            text-decoration: none;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <img src="amazon1.png" alt="Amazon Logo" class="logo">
+    <div class="container">
+        <h1>Create Account</h1>
+        <form id="createAccountForm">
+            <div class="form-group">
+                <label for="name">Your name</label>
+                <input type="text" id="name" name="name" placeholder="First and last name">
+                <div id="nameError" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="E-Mail">
+                <div id="emailError" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="At least 6 characters">
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Re-enter password</label>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password">
+            </div>
+            <button type="submit" class="btn">Continue</button>
+        </form>
+        <p class="footer-text">
+            Already have an account? <a href="signin1.html">Sign in ></a><br>
+            By creating an account or logging in, you agree to Ecart’s <a href="#">Conditions of Use</a> and <a href="#">Privacy Policy.</a>
+        </p>
+    </div>
+    <script>
+        document.getElementById('createAccountForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            let isValid = true;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            nameError.textContent = '';
+            emailError.textContent = '';
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!name) {
+                nameError.textContent = 'Name is required.';
+                isValid = false;
+            }
+
+            if (!email || !emailPattern.test(email)) {
+                emailError.textContent = 'Please enter a valid email.';
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('Form submitted successfully!');
+                
+                window.location.href = 'mainpage.html'; 
+            }
+        });
+    </script>
+</body>
+</html>

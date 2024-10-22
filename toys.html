@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Arrivals - Toys - Amazon Clone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            transition: box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product-title {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .product-price {
+            font-size: 18px;
+            color: #B12704; /* Amazon's price color */
+            margin: 10px 0;
+        }
+
+        .buy-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .buy-button:hover {
+            background-color: #45a049;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .modal-header {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .modal-body {
+            margin: 10px 0;
+        }
+
+        .close-button, .checkout-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .close-button:hover, .checkout-button:hover {
+            background-color: #45a049;
+        }
+
+        .checkout-button {
+            background-color: #f39c12; /* Checkout button color */
+        }
+
+        .checkout-button:hover {
+            background-color: #e67e22;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>New Arrivals - Toys</h1>
+        <div class="product-grid" id="productGrid">
+            <div class="product-card">
+                <img src="toy1.jpg" alt="Action Figure" class="product-image">
+                <div class="product-title">Action Figure</div>
+                <div class="product-price">₹1499</div>
+                <button class="buy-button" onclick="addToCart('Action Figure', 1499)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="toy2.jpg" alt="Puzzle Game" class="product-image">
+                <div class="product-title">Puzzle Game</div>
+                <div class="product-price">₹1999</div>
+                <button class="buy-button" onclick="addToCart('Puzzle Game', 1999)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="toy3.jpg" alt="Doll" class="product-image">
+                <div class="product-title">Doll</div>
+                <div class="product-price">₹2499</div>
+                <button class="buy-button" onclick="addToCart('Doll', 2499)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="toy4.jpg" alt="Remote Control Car" class="product-image">
+                <div class="product-title">Remote Control Car</div>
+                <div class="product-price">₹3999</div>
+                <button class="buy-button" onclick="addToCart('Remote Control Car', 3999)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="toy5.jpg" alt="Building Blocks" class="product-image">
+                <div class="product-title">Building Blocks</div>
+                <div class="product-price">₹2999</div>
+                <button class="buy-button" onclick="addToCart('Building Blocks', 2999)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">Item Added to Cart!</div>
+            <div class="modal-body">
+                <h2>Your Cart</h2>
+                <ul id="cartList"></ul>
+                <p>Total: ₹<span id="cartTotal">0.00</span></p>
+                <button onclick="checkout()" class="checkout-button">Checkout</button>
+                <button onclick="closeCart()" class="close-button">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            showCart();
+        }
+
+        function showCart() {
+            const cartList = document.getElementById('cartList');
+            const cartTotal = document.getElementById('cartTotal');
+            cartList.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - ₹${item.price.toFixed(2)}`;
+                cartList.appendChild(li);
+                total += item.price;
+            });
+
+            cartTotal.textContent = total.toFixed(2);
+            document.getElementById('cartModal').style.display = 'flex';
+        }
+
+        function closeCart() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        function checkout() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            window.location.href = 'js.html'; 
+        }
+    </script>
+
+</body>
+</html>

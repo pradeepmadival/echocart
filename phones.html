@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronics - Amazon Clone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            transition: box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product-title {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .product-price {
+            font-size: 18px;
+            color: #B12704; /* Amazon's price color */
+            margin: 10px 0;
+        }
+
+        .buy-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .buy-button:hover {
+            background-color: #45a049;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .modal-header {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .modal-body {
+            margin: 10px 0;
+        }
+
+        .close-button, .checkout-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .close-button:hover, .checkout-button:hover {
+            background-color: #45a049;
+        }
+
+        .checkout-button {
+            background-color: #f39c12; /* Checkout button color */
+        }
+
+        .checkout-button:hover {
+            background-color: #e67e22;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Electronics</h1>
+        <div class="product-grid" id="productGrid">
+            <div class="product-card">
+                <img src="phone1.jpg" alt="SAMSUNG S23 ULTRA" class="product-image">
+                <div class="product-title">SAMSUNG S23 ULTRA</div>
+                <div class="product-price">₹99,999</div>
+                <button class="buy-button" onclick="addToCart('SAMSUNG S23 ULTRA', 99999)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="phone2.jpg" alt="ONEPLUS 12" class="product-image">
+                <div class="product-title">ONEPLUS 12</div>
+                <div class="product-price">₹40,999</div>
+                <button class="buy-button" onclick="addToCart('ONEPLUS 12', 40999)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="phone3.jpg" alt="IPHONE 16 PRO MAX" class="product-image">
+                <div class="product-title">IPHONE 16 PRO MAX</div>
+                <div class="product-price">₹1,49,999</div>
+                <button class="buy-button" onclick="addToCart('IPHONE 16 PRO MAX', 149999)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="phone4.jpg" alt="NOTHING PHONE 2" class="product-image">
+                <div class="product-title">NOTHING PHONE 2</div>
+                <div class="product-price">₹39,999</div>
+                <button class="buy-button" onclick="addToCart('NOTHING PHONE 2', 39999)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="phone5.jpg" alt="VIVO V40e" class="product-image">
+                <div class="product-title">VIVO V40e</div>
+                <div class="product-price">₹40,999</div>
+                <button class="buy-button" onclick="addToCart('VIVO V40e', 40999)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="phone6.jpg" alt="SAMSUNG GALAXY BOOK 4 PRO" class="product-image">
+                <div class="product-title">SAMSUNG GALAXY BOOK 4 PRO</div>
+                <div class="product-price">₹1,89,999</div>
+                <button class="buy-button" onclick="addToCart('SAMSUNG GALAXY BOOK 4 PRO', 189999)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="phone7.jpg" alt="HP OMEN GAMING LAPTOP" class="product-image">
+                <div class="product-title">HP OMEN GAMING LAPTOP</div>
+                <div class="product-price">₹1,39,999</div>
+                <button class="buy-button" onclick="addToCart('HP OMEN GAMING LAPTOP', 139999)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="phone8.jpg" alt="MSI TITAN 18 HX" class="product-image">
+                <div class="product-title">MSI TITAN 18 HX</div>
+                <div class="product-price">₹4,99,999</div>
+                <button class="buy-button" onclick="addToCart('MSI TITAN 18 HX', 499999)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="phone9.jpg" alt="LENOVO LEGION 5" class="product-image">
+                <div class="product-title">LENOVO LEGION 5</div>
+                <div class="product-price">₹1,50,999</div>
+                <button class="buy-button" onclick="addToCart('LENOVO LEGION 5', 150999)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="phone10.jpg" alt="APPLE MACBOOK AIR 15" class="product-image">
+                <div class="product-title">APPLE MACBOOK AIR 15</div>
+                <div class="product-price">₹1,99,999</div>
+                <button class="buy-button" onclick="addToCart('APPLE MACBOOK AIR 15', 199999)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">Item Added to Cart!</div>
+            <div class="modal-body">
+                <h2>Your Cart</h2>
+                <ul id="cartList"></ul>
+                <p>Total: ₹<span id="cartTotal">0.00</span></p>
+                <button onclick="checkout()" class="checkout-button">Checkout</button>
+                <button onclick="closeCart()" class="close-button">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            showCart();
+        }
+
+        function showCart() {
+            const cartList = document.getElementById('cartList');
+            const cartTotal = document.getElementById('cartTotal');
+            cartList.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - ₹${item.price.toFixed(2)}`;
+                cartList.appendChild(li);
+                total += item.price;
+            });
+
+            cartTotal.textContent = total.toFixed(2);
+            document.getElementById('cartModal').style.display = 'flex';
+        }
+
+        function closeCart() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        function checkout() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            window.location.href = 'js.html'; 
+        }
+    </script>
+
+</body>
+</html>

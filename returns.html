@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Clone - Returns & Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 10px 0 5px;
+        }
+
+        input, select, button {
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .product-container {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .product-image {
+            max-width: 150px;
+            height: auto;
+            margin-right: 20px; 
+        }
+
+        .action-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .action-buttons button {
+            margin-right: 10px; 
+        }
+
+        .support {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Returns & Exchanges</h1>
+        <form>
+            <label for="orderId">Order ID:</label>
+            <input type="text" id="orderId" required>
+
+            <label for="item">Item to return:</label>
+            <input type="text" id="item" required>
+
+            <label for="reason">Reason for return:</label>
+            <select id="reason" required>
+                <option value="damaged">Damaged</option>
+                <option value="wrong_item">Wrong Item</option>
+                <option value="not_satisfied">Not Satisfied</option>
+                <option value="other">Other</option>
+            </select>
+
+            <button type="submit">Submit Return Request</button>
+        </form>
+
+        <h1>Your Orders</h1>
+        <ul>
+            <li>Order ID: 123UNB2 , Item:Samsung Galaxy S24,  Status: Shipped</li>
+                <div class="product-container">
+                <img src="download.jpg" alt="Product a" class="product-image">
+                <div class="action-buttons">
+                    <button>Order Again</button>
+                    <div class="support">Need help? <a href="#">Contact Support</a></div>
+                </div>
+            </div>
+            <li>Order ID: 243UNM2,  Item: Samsung Galaxy Book 2 pro ,  Status: Delivered </li>
+            <div class="product-container">
+                <img src="download (1).jpg" alt="Product a" class="product-image">
+                <div class="action-buttons">
+                    <button>Order Again</button>
+                    <div class="support">Need help? <a href="#">Contact Support</a></div>
+                </div>
+            </div>
+            <li>Order ID: 243UNGE3,  Item: Samsung Galaxy Buds  ,  Status: Delivered </li>
+            <div class="product-container">
+                <img src="download (2).jpg" alt="Product a" class="product-image">
+                <div class="action-buttons">
+                    <button>Order Again</button>
+                    <div class="support">Need help? <a href="#">Contact Support</a></div>
+                </div>
+            </div>
+
+        </ul>
+    </div>
+
+</body>
+</html>
