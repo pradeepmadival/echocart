@@ -14,7 +14,7 @@ Echocart is an e-commerce web application inspired by Amazon, allowing users to 
 
  Clone the repository:
    
-   git clone https://github.com/pradeepmadival/echocart.git
+   git clone https://github.com/pradeepmadival/echocart
 ## Usage
 
 1. Create an account or log in to your existing account.
