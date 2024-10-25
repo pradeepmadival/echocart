@@ -9,11 +9,6 @@ Echocart is an e-commerce web application inspired by Amazon, allowing users to 
 - **Orders & Returns**: View your order history and manage returns effortlessly.
 - **Shopping Cart**: Add products to your cart for easy checkout.
 
-## Technologies Used
-
-- **Frontend**: [React.js / Vue.js / Angular] (Choose the framework you used)
-- **Backend**: [Node.js / Django / Flask] (Choose the technology you used)
-- **Database**: [MongoDB / MySQL / PostgreSQL] (Choose the database you used)
 
 ## Installation
 
